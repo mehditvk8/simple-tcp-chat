@@ -1,9 +1,53 @@
 import socket
-from server import config
 import threading
 from datetime import datetime
 import json
 import os
+
+
+class Config:
+
+    def __init__(self, config_file=None):
+        if config_file is None:
+            self.__config_file = "config.json"
+            self.__ip = self.load("ip")
+
+        else:
+            try:
+                self.__config_file = config_file
+                self.__ip = self.load("ip")
+                self.online_clients = []
+
+            except KeyError:
+                print("can not reading configs")
+                exit(1)
+
+    def load(self, name):
+        try:
+            cnf_file = open(self.__config_file, "r")
+            cntnt = json.load(cnf_file)
+            cnf_file.close()
+            return cntnt[name]
+        except Exception:
+            print("cant load config file")
+            exit(1)
+
+    def get__config_file(self):
+        return self.__config_file
+
+    def set__config_file(self, name):
+        self.__config_file = name
+
+    def set_port(self, port):
+        cnf_file = open(self.__config_file, "w")
+        inf_dict = {"port": port, "ip": self.__ip}
+        json.dump(inf_dict, cnf_file)
+        cnf_file.close()
+
+
+config = Config()
+
+
 
 class Client:
     def __init__(self):
