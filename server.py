@@ -25,7 +25,7 @@ class Config:
 
     def __init__(self, config_file=None):
         if config_file is None:
-            self.__config_file = "/home/mehdi8/Borhan/socket/config.json"
+            self.__config_file = "config.json"
             self.__ip = self.load("ip")
 
         else:
