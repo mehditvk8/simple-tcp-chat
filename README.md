@@ -14,12 +14,16 @@ Then you can run `client.py` and start chat.
 
 **Note**: You can access each system **ip** with [this manual](https://www.dnsstuff.com/scan-network-for-device-ip-address)
 
-### install reqired packages
+## install reqired packages
 In this program I use socket,threading and json packages if you dont have them you can install them using pip:
 
+### windows
 ```bash
 pip install socket
-pip install
+```
+### linux
+```bash
+pip3 install socket
 ```
 
 ## contribution
